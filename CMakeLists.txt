@@ -28,10 +28,12 @@ set(SRCS
 
 set(DEPENDENCY_DIR ${CMAKE_CURRENT_BINARY_DIR}/dependencies)
 set(DEPENDENCY_INSTALL_DIR ${DEPENDENCY_DIR}/install)
-
+#added : Pushyami
+SET(OpenCV_DIR "/home/auv/software/opencv/build_cuda10.0")
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+message(${CMAKE_CURRENT_BINARY_DIR})
 if(BUILD_DBoW2)
   set(LIB_SHARED "SHARED")
   if(WIN32)
@@ -49,6 +51,10 @@ if(BUILD_Demo)
   set_target_properties(demo PROPERTIES CXX_STANDARD 11)
   file(COPY demo/images DESTINATION ${CMAKE_BINARY_DIR}/)
 endif(BUILD_Demo)
+
+#added : Pushyami
+set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install" CACHE PATH "Installation Directory" FORCE)
+message(${CMAKE_INSTALL_PREFIX})
 
 configure_file(src/DBoW2.cmake.in
   "${PROJECT_BINARY_DIR}/DBoW2Config.cmake" @ONLY)

@@ -51,7 +51,8 @@ int main()
 
   testVocCreation(features);
 
-  wait();
+
+  //wait();
 
   testDatabase(features);
 
